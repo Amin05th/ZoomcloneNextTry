@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import axios from 'axios'
 
 interface Props {
-  AddedValueToCall: any
+  AddedValueToCall: React.Dispatch<React.SetStateAction<undefined>>
 }
 
 export default class createButton extends Component<Props> {

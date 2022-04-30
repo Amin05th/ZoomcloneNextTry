@@ -1830,9 +1830,9 @@
   "version" "2.0.0"
 
 "async@^2.6.2":
-  "integrity" "sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg=="
-  "resolved" "https://registry.npmjs.org/async/-/async-2.6.3.tgz"
-  "version" "2.6.3"
+  "integrity" "sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA=="
+  "resolved" "https://registry.npmjs.org/async/-/async-2.6.4.tgz"
+  "version" "2.6.4"
   dependencies:
     "lodash" "^4.17.14"
 
@@ -5334,6 +5334,13 @@
     "engine.io-client" "~6.1.1"
     "parseuri" "0.0.6"
     "socket.io-parser" "~4.1.1"
+
+"socket.io-json-parser@^3.0.0":
+  "integrity" "sha512-qLFmkO3ypgNyqIDWVLf2D8HBIFUmztMjyYftkM+hA5IrYUq9d8X0wmjOsps8+bg1CnD+y8PJwLkxnc/eHraDZg=="
+  "resolved" "https://registry.npmjs.org/socket.io-json-parser/-/socket.io-json-parser-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "component-emitter" "~1.3.0"
 
 "socket.io-parser@~4.0.4":
   "integrity" "sha512-t+b0SS+IxG7Rxzda2EVvyBZbvFPBCjJoyHuE0P//7OAsN23GItzDRdWa6ALxZI/8R5ygK7jAR6t028/z+7295g=="

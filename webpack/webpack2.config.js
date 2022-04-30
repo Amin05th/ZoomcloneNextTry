@@ -43,7 +43,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './src/HtmlFiles/Startpage.html'),
-      filename: 'Startpage.html'
-    })
-  ]
+      filename: 'Startpage.html',
+    }),
+  ],
 }

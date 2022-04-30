@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import Meetingroom from './MeetingRoom/Meetingroom'
+import Dashboard from './MeetingRoom/Dashboard'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-ReactDOM.hydrate(<Meetingroom />, document.getElementById('Meetingroomroot'))
+ReactDOM.hydrate(<Dashboard />, document.getElementById('Meetingroomroot'))

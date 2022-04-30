@@ -4,7 +4,7 @@ import axios from 'axios'
 
 interface Props {
   Text: string
-  setAddedValueToCall: any
+  setAddedValueToCall: React.Dispatch<React.SetStateAction<undefined>>
 }
 
 function SearchfiltredUser(props: Props) {
@@ -33,7 +33,17 @@ function SearchfiltredUser(props: Props) {
       style={{ maxHeight: '50vh', boxShadow: '0px 0px 0px 3.5px lightgray' }}
     >
       {FilltredData.map((User: any, index: number) => {
-        return <div onClick={() => SelectUser(index)}>{User._id}</div>
+        return (
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+          <div
+            key={index}
+            onKeyDown={() => {}}
+            onClick={() => SelectUser(index)}
+            role="table"
+          >
+            {User._id}
+          </div>
+        )
       })}
     </ListGroup>
   )

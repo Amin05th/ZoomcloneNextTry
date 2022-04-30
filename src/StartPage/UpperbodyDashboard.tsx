@@ -3,7 +3,7 @@ import CreateButton from './createButton'
 import InsertetPeople from './InsertetPeople'
 
 interface Props {
-  AddedValueToCall: any
+  AddedValueToCall: string
 }
 
 const UpperbodyDashboard = (props: Props) => {
@@ -11,9 +11,9 @@ const UpperbodyDashboard = (props: Props) => {
 
   useEffect(() => {
     if (props.AddedValueToCall == undefined) return
-    setAddedValueToCall((prevValue: any) => {
+    setAddedValueToCall((prevValue: string) => {
       if (prevValue.includes(props.AddedValueToCall)) {
-        return prevValue.filter((previd: any) => {
+        return prevValue.filter((previd: string) => {
           return props.AddedValueToCall === previd
         })
       }

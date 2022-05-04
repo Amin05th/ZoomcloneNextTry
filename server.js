@@ -46,7 +46,7 @@ app.get('/user/data', async (req, res) => {
   res.json(UserDataBase)
 })
 
-app.get('/room/roomid', (req, res) => {
+app.get('/id/ids', (req, res) => {
   res.json(RoomId)
 })
 app.listen(Port)

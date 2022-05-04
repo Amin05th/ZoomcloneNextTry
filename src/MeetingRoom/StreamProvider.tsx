@@ -6,13 +6,13 @@ export function useStream() {
   return useContext(StreamContext)
 }
 
-export function StreamProvider({ children }: any) {
+export function StreamProvider<T>({ children }: T) {
   const Stream = navigator.mediaDevices
     .getUserMedia({
       video: true,
       audio: true,
     })
-    .then((stream: any) => {
+    .then((stream) => {
       return stream
     })
 

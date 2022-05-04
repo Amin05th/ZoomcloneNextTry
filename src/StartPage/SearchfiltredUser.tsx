@@ -14,7 +14,7 @@ function SearchfiltredUser(props: Props) {
     async function fetchdata() {
       const response = await axios.get('/user/data')
       const Data = response.data
-      const FilltredData = Data.filter((User: any) => {
+      const FilltredData = Data.filter((User: { _id: string }) => {
         return User._id.includes(props.Text)
       })
       setFilltredData(FilltredData)
@@ -32,7 +32,7 @@ function SearchfiltredUser(props: Props) {
       className="list-unstyled w-100 overflow-auto ps-4 mt-2"
       style={{ maxHeight: '50vh', boxShadow: '0px 0px 0px 3.5px lightgray' }}
     >
-      {FilltredData.map((User: any, index: number) => {
+      {FilltredData.map((User: { _id: string }, index: number) => {
         return (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
           <div

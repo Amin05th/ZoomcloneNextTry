@@ -13,9 +13,11 @@ export default class InsertetPeople extends Component<Props> {
           className="w-100 list-unstyled overflow-auto m-2 d-flex justify-content-center"
           style={{ maxHeight: '30vh', height: '30vh' }}
         >
-          {this.props.AddedValueToCall.map((User: any, index: number) => {
-            return <div key={index}>{User._id}</div>
-          })}
+          {this.props.AddedValueToCall.map(
+            (User: { _id: string }, index: number) => {
+              return <div key={index}>{User._id}</div>
+            }
+          )}
         </ListGroup>
       </div>
     )

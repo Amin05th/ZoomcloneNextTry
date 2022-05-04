@@ -6,18 +6,18 @@ function Buttons() {
   const Stream = useStream()
 
   function toggleCam() {
-    Stream.Stream.then((myStream: any) => {
+    Stream.Stream.then((myStream: { getVideoTracks: () => any[] }) => {
       myStream
         .getVideoTracks()
-        .forEach((track: any) => (track.enabled = !track.enabled))
+        .forEach((track) => (track.enabled = !track.enabled))
     })
   }
 
   function toggleAudio() {
-    Stream.Stream.then((myStream: any) => {
+    Stream.Stream.then((myStream: { getAudioTracks: () => any[] }) => {
       myStream
         .getAudioTracks()
-        .forEach((track: any) => (track.enabled = !track.enabled))
+        .forEach((track) => (track.enabled = !track.enabled))
     })
   }
 

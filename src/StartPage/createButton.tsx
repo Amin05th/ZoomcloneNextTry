@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import axios from 'axios'
 
 interface Props {
@@ -15,11 +15,7 @@ export default class createButton extends Component<Props> {
 
   render() {
     return (
-      <form
-        action="/meeting"
-        method="GET"
-        className="d-flex justify-content-end mt-3"
-      >
+      <form action="/meeting" method="GET">
         <Button type="submit" onClick={() => this.SendInsertedPeople()}>
           CREATE
         </Button>

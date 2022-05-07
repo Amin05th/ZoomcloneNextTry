@@ -21,6 +21,10 @@ function Buttons() {
     })
   }
 
+  function leaveCall() {
+    window.location.href = '/'
+  }
+
   return (
     <div className="flex-grow-1 d-flex justify-content-center align-items-start gap-2 mt-3">
       <Button
@@ -44,7 +48,11 @@ function Buttons() {
       <Button variant="light" style={{ width: '80px', height: '40px' }}>
         Invite
       </Button>
-      <Button variant="light" style={{ width: '80px', height: '40px' }}>
+      <Button
+        onClick={() => leaveCall()}
+        variant="light"
+        style={{ width: '80px', height: '40px' }}
+      >
         Leave
       </Button>
     </div>

@@ -8,14 +8,13 @@ const io = require('socket.io')(Socketport, {
 
 io.on('connection', (socket) => {
   socket.on('join-room', (RoomId, Id) => {
-    console.log(RoomId)
     socket.join(RoomId)
     socket.on('ready', () => {
       socket.to(RoomId).emit('user-connected', Id)
     })
 
     socket.on('disconnect', () => {
-      socket.to(RoomId).emit('user-disconnected', Id)
+      socket.to(RoomId).emit('user-disconnected')
     })
   })
 })

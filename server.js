@@ -8,6 +8,8 @@ const User = require('./User')
 const Port = 3000
 const app = express()
 let RoomId
+let ownId
+let Members
 
 app.use(
   helmet({
@@ -47,6 +49,23 @@ app.get('/user/data', async (req, res) => {
 })
 
 app.get('/id/ids', (req, res) => {
-  res.json(RoomId)
+  res.json({ RoomId: RoomId })
 })
+
+app.post('/meeting/members', (req, res) => {
+  Members = req.body.Members
+})
+
+app.put('/id/ownId/', (req, res) => {
+  ownId = req.body.id
+})
+
+app.get('/meeting/members', (req, res) => {
+  res.json(Members)
+})
+
+app.get('/id/ownid/', (req, res) => {
+  res.json(ownId)
+})
+
 app.listen(Port)

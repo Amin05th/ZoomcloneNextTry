@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { useStream } from './StreamProvider'
-import Peer from 'peerjs'
+import Peer, {MediaConnection} from 'peerjs'
 import io from 'socket.io-client'
 import axios from 'axios'
 
 function Meetingroom() {
   const socket = io('http://localhost:8000/')
-  const videoGrid: any = useRef()
+  const videoGrid = useRef<HTMLVideoElement>(null)
   const Stream = useStream()
   const myPeer = new Peer(undefined, {
     port: 3001,
@@ -14,9 +14,8 @@ function Meetingroom() {
   })
   const myVideo = document.createElement('video')
   myVideo.muted = true
-  const peers: any = {}
 
-  Stream.Stream.then((stream: any) => {
+  Stream.Stream.then((stream: MediaStream) => {
     addVideoStream(myVideo, stream)
 
     myPeer.on('call', (call) => {
@@ -36,10 +35,10 @@ function Meetingroom() {
     })
   })
 
-  socket.on('user-disconnected', (userId) => {
-    if (peers[userId]) peers[userId].close()
+  socket.on('user-disconnected', () => {
     for (const conns in myPeer.connections) {
-      myPeer.connections[conns].forEach((conn: any) => {
+      myPeer.connections[conns].forEach((conn: MediaConnection) => {
+        console.log(conn)
         conn.peerConnection.close()
         if (conn.close) conn.close()
       })
@@ -48,29 +47,42 @@ function Meetingroom() {
 
   myPeer.on('open', (id) => {
     axios.get('/id/ids').then((RoomID) => {
-      socket.emit('join-room', RoomID.data, id)
+      socket.emit('join-room', RoomID.data.RoomId, id)
     })
   })
 
-  function connectToNewUser(userId: any, stream: any) {
-    const call = myPeer.call(userId, stream)
-    const video = document.createElement('video')
-    call.on('stream', (userVideoStream) => {
-      addVideoStream(video, userVideoStream)
-    })
-    call.on('close', () => {
-      video.remove()
-    })
+  function connectToNewUser(userId: string, stream: MediaStream) {
+    const InvitedMembers: string[] = []
+    PushMembersinArray(InvitedMembers)
 
-    peers[userId] = call
+    axios.get('/id/ownid/').then((res) => {
+      const isIncluded = InvitedMembers.includes(res.data)
+      if (!isIncluded) return
+      const call = myPeer.call(userId, stream)
+      const video = document.createElement('video')
+      call.on('stream', (userVideoStream) => {
+        addVideoStream(video, userVideoStream)
+      })
+      call.on('close', () => {
+        video.remove()
+      })
+    })
   }
 
-  function addVideoStream(video: any, stream: any) {
+  function addVideoStream(video: HTMLVideoElement, stream: MediaStream) {
     video.srcObject = stream
     video.addEventListener('loadedmetadata', () => {
       video.play()
     })
     videoGrid.current.append(video)
+  }
+
+  function PushMembersinArray(Array: string[]) {
+    axios.get('/meeting/members').then((res) => {
+      res.data.forEach((Member: {_id: string}) => {
+        Array.push(Member._id)
+      })
+    })
   }
 
   return (

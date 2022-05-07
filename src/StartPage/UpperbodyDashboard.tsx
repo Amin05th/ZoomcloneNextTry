@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import CreateButton from './createButton'
 import InsertetPeople from './InsertetPeople'
+import JoiningRoom from './JoiningRoom'
 
 interface Props {
   AddedValueToCall: string
@@ -23,7 +24,10 @@ const UpperbodyDashboard = (props: Props) => {
 
   return (
     <div>
-      <CreateButton AddedValueToCall={AddedValueToCall} />
+      <div className="d-flex justify-content-between mt-3">
+        <JoiningRoom />
+        <CreateButton AddedValueToCall={AddedValueToCall} />
+      </div>
       <InsertetPeople AddedValueToCall={AddedValueToCall} />
     </div>
   )
